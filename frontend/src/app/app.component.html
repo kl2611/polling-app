@@ -8,20 +8,7 @@
       <h3 class="text-muted">Polling Fun</h3>
     </div>
 
-    <div 
-      *ngIf="currentPoll"
-      class="jumbotron">
-      <h2>{{currentPoll.title}}</h2>
-      <li class="list-group-item" *ngFor="let option of currentPoll.options; let i=index;">
-        <label>
-          <div class="select">
-            <input type="radio" value="option"> {{option.name}}
-          </div>
-        </label>
-      </li>
-
-      <p><a class="btn btn-lg btn-success" href="index.html#" role="button">Submit</a></p>
-    </div>
+    <poll-component></poll-component>
 
     <footer class="footer">
       <p>&copy; 2017 Kelly Liu</p>

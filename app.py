@@ -1,10 +1,12 @@
 from flask import Flask, request, flash, render_template, redirect, url_for, jsonify, send_file
 from flask_migrate import Migrate
+from flask_restful import Resource, Api
 from flask_cors import CORS
-from flask_webpack import Webpack
 from models import db, Polls, Questions
+import simplejson as json
 
 app = Flask(__name__)
+api = Api(app)
 CORS(app)
 
 # load config from the config file we created earlier
@@ -43,11 +45,18 @@ def api_polls():
 
     return jsonify(all_polls)
 
-@app.route('/api/polls/options')
-def api_polls_options():
-  all_options = [option.to_json() for option in Options.query.all()]
+@app.route('/api/polls/<int:poll_id>', methods=['GET', 'PATCH', 'DELETE'])
+# retrieves one poll based on id
+def get(poll_id):
+  if request.method == 'GET':
+    poll = Questions.query.get(poll_id).to_json()
+    return jsonify(poll)
+   
+# @app.route('/api/polls/options')
+# def api_polls_options():
+#   all_options = [option.to_json() for option in Options.query.all()]
 
-  return jsonify(all_options)
+#   return jsonify(all_options)
 
 @app.route('/api/poll/vote', methods=['PATCH'])
 def api_poll_vote():

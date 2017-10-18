@@ -1,4 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy import select, func
+import uuid
 
 # create a new SQLAlchemy object
 db = SQLAlchemy()
@@ -15,6 +18,7 @@ class Base(db.Model):
 # Model for poll questions
 class Questions(Base):
     title = db.Column(db.String(500))
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     # user friendly way to display the object
     def __repr__(self):
@@ -23,6 +27,7 @@ class Questions(Base):
     def to_json(self):
       return {
         'title': self.title,
+        'id': self.id,
         'options': [{
           'name': option.option.name, 
           'vote_count': option.vote_count}
@@ -36,16 +41,15 @@ class Options(Base):
   def __repr__(self):
     return self.name
 
-  # def to_json(self):
-  #   return {
-  #     'id': uuid.uuid4() # Generates a random uuid
-  #     'name': self.name
-  #   }
+  def to_json(self):
+    return {
+      'id': uuid.uuid4(),  # Generates a random uuid
+      'name': self.name
+    }
 
 # Polls model to connect questions and options together
 class Polls(Base):
   # Columns declaration
-  id = db.Column(db.Integer, primary_key=True)
   question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
   option_id = db.Column(db.Integer, db.ForeignKey('options.id'))
   vote_count = db.Column(db.Integer, default=0)
@@ -59,3 +63,10 @@ class Polls(Base):
   def __repr__(self):
     # a user friendly way to view our objects in the terminal
     return self.option.name
+
+  def get_all():
+    return Polls.query.all()
+
+  def delete(self):
+    db.session.delete(self)
+    db.session.commit()

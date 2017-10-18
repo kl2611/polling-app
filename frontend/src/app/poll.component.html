@@ -1,0 +1,22 @@
+<div 
+  *ngIf="currentPoll"
+  class="jumbotron">
+<h2>{{currentPoll.title}}</h2>
+
+<div class="list-group-item" *ngFor="let option of currentPoll.options; let i=index;">
+  <label>
+    <div class="select">
+      <input type="radio"
+             name = "options"
+             [(ngModel)]="selected"
+             [value]="option.name"> {{option.name}}
+    </div>
+  </label>
+</div>
+
+<p><a 
+  (click)="onSubmit()"
+  class="btn btn-lg btn-success" 
+  href="index.html#" role="button">Submit</a>
+</p>
+</div>
