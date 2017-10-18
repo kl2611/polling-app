@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-root',
+  selector: 'poll-question',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class PollComponent {
   public title = 'Polling Fun';
   private getPollsURL: string = "http://localhost:5000/api/polls";
   private polls: any;

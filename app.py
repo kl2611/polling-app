@@ -1,12 +1,11 @@
-from flask import Flask, request, flash, render_template, redirect, url_for, jsonify
+from flask import Flask, request, flash, render_template, redirect, url_for, jsonify, send_file
 from flask_migrate import Migrate
+from flask_cors import CORS
 from flask_webpack import Webpack
 from models import db, Polls, Questions
 
-webpack = Webpack()
-
 app = Flask(__name__)
-# webpack.init_app(app)
+CORS(app)
 
 # load config from the config file we created earlier
 app.config.from_object('config')
@@ -19,7 +18,7 @@ migrate = Migrate(app, db, render_as_batch=True)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return send_file('frontend/src/index.html')
 
 if __name__ == '__main__':
     app.run()

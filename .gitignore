@@ -3,3 +3,7 @@ bin/
 include/
 .vscode/
 .Python
+__pycache__
+*.pyc
+.idea
+node_modules/
