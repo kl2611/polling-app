@@ -45,10 +45,10 @@ class Options(Base):
 # Polls model to connect questions and options together
 class Polls(Base):
   # Columns declaration
+  id = db.Column(db.Integer, primary_key=True)
   question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
   option_id = db.Column(db.Integer, db.ForeignKey('options.id'))
   vote_count = db.Column(db.Integer, default=0)
-  status = db.Column(db.Boolean) # to mark poll as open or closed
 
   # Relationship declaration (makes it easier for us to access the polls model
   # from the other models it's related to)

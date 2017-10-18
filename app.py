@@ -1,8 +1,12 @@
 from flask import Flask, request, flash, render_template, redirect, url_for, jsonify
 from flask_migrate import Migrate
+from flask_webpack import Webpack
 from models import db, Polls, Questions
 
+webpack = Webpack()
+
 app = Flask(__name__)
+# webpack.init_app(app)
 
 # load config from the config file we created earlier
 app.config.from_object('config')
