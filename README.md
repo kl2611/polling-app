@@ -2,8 +2,8 @@
 This is a small web app which features a landing page where a random poll question is displayed along with a list of possible responses. Once the user submits a response, the page redirects to a new view that displays the question and response frequencies in the form of a bar chart. Upon returning to the homepage, a new random question will be asked. User can answer the same question more than once.
 
 ## Demo
-![alt text](http://url/to/img.png)
-![alt text](http://url/to/img.png)
+![image](https://github.com/kl2611/polling-app/blob/master/static/images/question.png?raw=true)
+![image](https://github.com/kl2611/polling-app/blob/master/static/images/results.png?raw=true)
 
 ## Local Deployment
 
