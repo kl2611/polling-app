@@ -51,7 +51,6 @@ def api_poll(poll_id):
     poll = Questions.query.get(poll_id).to_json()
     return jsonify(poll)
 
-
 @app.route('/api/polls/options')
 def api_polls_options():
   all_options = [option.to_json() for option in Options.query.all()]
@@ -75,6 +74,6 @@ def api_poll_vote():
       option.vote_count += 1
       db.session.commit()
 
-      return jsonify({'message': 'Thank you for voting'})
+      return jsonify({'message': 'Thanks for voting'})
 
-  return jsonify({'message': 'option or poll was not found please try again'})
+  return jsonify({'message': 'Option or poll was not found. Please try again'})

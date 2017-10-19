@@ -9,7 +9,6 @@ db = SQLAlchemy()
 # Base model that for other models to inherit from
 class Base(db.Model):
     __abstract__ = True
-    extend_existing=True
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
