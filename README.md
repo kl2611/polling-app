@@ -22,7 +22,11 @@ flask run
 ```
 
 #### Frontend setup
-Navigate to frontend folder `cd frontend`
+Navigate to frontend folder 
+```
+cd frontend
+```
+
 Install dependencies
 ```
 npm install
