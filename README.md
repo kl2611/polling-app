@@ -85,8 +85,8 @@ Navigate to `localhost:5001` in your browser
 | -------------   | -------------  | --------------------------|
 |  GET            | /api/polls     |  gets all polls           |
 |  POST           | /api/polls     |  create a new poll        |
-|  GET            | /api/polls/:id |  not null                 |
-|  PATCH          | /api/polls/vote|  votes on a poll' option  |
+|  GET            | /api/polls/:id |  gets poll based on id    |
+|  PATCH          | /api/polls/vote|  votes on a poll option   |
 
 ## Schema
 #### Questions
