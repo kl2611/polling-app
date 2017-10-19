@@ -38,13 +38,13 @@ def api_polls():
     return "The title of the poll is {} and the options are {} and {}".format(poll['title'], *poll['options'])
 
   else:
-    # return dict representation of our API
+    # GET request: return dict representation of our API
     polls = Questions.query.join(Polls).all()
     all_polls = [poll.to_json() for poll in polls]
 
     return jsonify(all_polls)
 
-@app.route('/api/polls/<int:poll_id>', methods=['GET', 'POST', 'DELETE'])
+@app.route('/api/polls/<int:poll_id>', methods=['GET'])
 # retrieves one poll based on id
 def api_poll(poll_id):
   if request.method == 'GET':

@@ -78,9 +78,9 @@ class Polls(Base):
   def __repr__(self):
     return self.option.name
 
-  def get_all():
-    return Polls.query.all()
+  # def get_all():
+  #   return Polls.query.all()
 
-  def delete(self):
-    db.session.delete(self)
-    db.session.commit()
+  # def delete(self):
+  #   db.session.delete(self)
+  #   db.session.commit()

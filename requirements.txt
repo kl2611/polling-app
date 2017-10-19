@@ -4,7 +4,6 @@ Babel==2.3.4
 beautifulsoup4==4.5.1
 billiard==3.5.0.2
 blinker==1.4
-celery==4.0.0
 click==6.6
 codecov==2.0.5
 coverage==4.2
