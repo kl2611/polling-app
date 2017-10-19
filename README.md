@@ -112,5 +112,5 @@ With more time permitted, I implement the following:
 - Improving app security
 - Improve UI/UX design
 - Render all error views and components
-- Provide a larger poll question repository/seed file. As of now there are only 5 questions in the database.
-- Ability for a user to create, view, update, and delete questions and their options
+- Provide a larger poll question repository/seed file. As of now there are only 10 questions in the database.
+- Ability for a user to delete and modify existing poll options. 
