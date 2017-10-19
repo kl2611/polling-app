@@ -3,13 +3,23 @@ This polling app features a landing page where a random poll question is display
 
 ## Local Deployment
 #### Backend setup
-Create virtual environment 
+Clone git repository
 ```
-virtualenv polling-app
+git clone https://github.com/kl2611/polling-app.git
 ```
-go into polling-app folder 
+
+Navigate into root directory
 ```
 cd polling-app
+```
+
+Create virtual environment 
+```
+virtualenv flask
+```
+go into flask folder 
+```
+cd flask
 ```
 Activate virtual environment
 ```

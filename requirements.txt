@@ -2,6 +2,7 @@ alembic==0.8.8
 Babel==2.3.4
 Flask==0.11.1
 Flask-Admin==1.4.2
+Flask-Restful==0.3.6
 Flask-Cors==3.0.2
 Flask-Migrate==2.0.0
 Flask-Restful==0.3.6
