@@ -80,6 +80,14 @@ Navigate to `localhost:5001` in your browser
 - Bootstrap toolkit
 - SASS stylesheets
 
+## Available APIs
+|  HTTP Method    | URL            | details                   |
+| -------------   | -------------  | --------------------------|
+|  GET            | /api/polls     |  gets all polls           |
+|  POST           | /api/polls     |  create a new poll        |
+|  GET            | /api/polls/:id |  not null                 |
+|  PATCH          | /api/polls/vote|  votes on a poll' option  |
+
 ## Schema
 #### Questions
 | column name     | data type     | details                   |
