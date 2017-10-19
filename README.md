@@ -5,18 +5,33 @@ This polling app features a landing page where a random poll question is display
 #### Backend setup
 Create virtual environment `virtualenv flask`
 <br />
+Install requirements 
+```
+pip install -r requirements.txt
+```
 
-`pip install -r requirements.txt`
-<br />
-`FLASK_APP=server`
-<br />
-`FLASK_DEBUG=1 flask run`
-<br />
-`flask run`
+Set the FLASK_APP and FLASK_DEBUG variables
+```
+FLASK_APP=server
+FLASK_DEBUG=1
+```
+
+Run with
+```
+flask run
+```
 
 #### Frontend setup
-In terminal, run `ng serve --host 0.0.0.0 --port 5001`
-<br />
+Navigate to frontend folder `cd frontend`
+Install dependencies
+```
+npm install
+```
+To run:
+```
+ng serve --host 0.0.0.0 --port 5001
+```
+
 Navigate to `localhost:5001` in your browser
 
 ## Code
