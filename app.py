@@ -31,8 +31,23 @@ def api_polls():
     # get the poll and save it in the database
     poll = request.get_json()
 
-    return "The title of the poll is {} and the options are {} and {}".format(poll['title'], *poll['options'])
+    # simple validation to check if all values are properly secret
+    for key, value in poll.items():
+        if not value:
+          return jsonify({'error': 'value for {} is empty'.format(key)})
 
+    title = poll['title']
+    options_query = lambda option : Options.query.filter(Options.name.like(option))
+
+    options = [Polls(option=Options(name=option)) for option in poll['options']]
+
+    new_question = Questions(title=title, options=options)
+
+    db.session.add(new_question)
+    db.session.commit()
+
+    # return jsonify({'message': 'Poll was created succesfully'})
+    return "The title of the poll is {} and the options are {} and {}".format(poll['title'], *poll['options'])
   else:
     # GET request: return dict representation of our API
     polls = Questions.query.join(Polls).all()
@@ -40,21 +55,12 @@ def api_polls():
 
     return jsonify(all_polls)
 
-@app.route('/api/polls/<int:poll_id>', methods=['GET', 'DELETE'])
+@app.route('/api/polls/<int:poll_id>', methods=['GET'])
 # retrieves one poll based on id
 def api_poll(poll_id):
   if request.method == 'GET':
     poll = Questions.query.get(poll_id).to_json()
     return jsonify(poll)
-  elif request.method == 'DELETE':
-      poll = db.session.query(Questions).filter_by(id=poll_id)
-      if poll:
-        poll.delete()
-        db.session.commit()
-        db.session.remove()
-        return jsonify({'message': 'Sucessfully deleted'})
-      else:
-        return jsonify({'message': 'Poll ID does not exist or has already been deleted'})
 
 @app.route('/api/polls/options')
 def api_polls_options():
