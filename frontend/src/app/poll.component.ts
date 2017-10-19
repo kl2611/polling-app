@@ -13,7 +13,7 @@ export class PollComponent {
 
   private getPollsURL: string = "http://localhost:5000/api/polls";
   private voteURL: string = "http://localhost:5000/api/polls/vote"
-  private pollLength: Number = 2;
+  private pollLength: Number = 5;
   // Fixed number representing number of questions in polls to reduce calls to database
   private randomPollNumber: Number; 
   private currentPoll: any; 
@@ -48,7 +48,9 @@ export class PollComponent {
       'option': this.selected
     };
 
-    console.log(this.selected, data);
+    // console.log(this.selected, data);
+
+    // PATCH request to increment counter
     this.http.patch(this.voteURL, {
       data: data
     }).subscribe(

@@ -22,7 +22,7 @@ export class PollResultsComponent {
     // Init results page for id passed after submit
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
-      console.log(params)
+      // console.log(params)
       this.getData();
     });
   }
@@ -33,13 +33,14 @@ export class PollResultsComponent {
       this.http.get(currentPollURL).subscribe(data => {
         this.resultsPoll = data;
         this.total_vote_count = this.resultsPoll.total_vote_count;
-        console.log('polls', this.resultsPoll);
+        // console.log('polls', this.resultsPoll);
         this.renderGraph();
       })
     }
   }
 
   renderGraph() {
+    // Stores a percentage calculation and CSS property to option property
     var total_vote_count = this.total_vote_count;
     for (var i = 0; i < this.resultsPoll.options.length; i++) {
       this.resultsPoll.options[i].progress = Math.round((this.resultsPoll.options[i].vote_count / total_vote_count) * 100) || 0
