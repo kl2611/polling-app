@@ -3,17 +3,32 @@ This polling app features a landing page where a random poll question is display
 
 ## Local Deployment
 #### Backend setup
-Create virtual environment `virtualenv flask`
-<br />
-Install requirements 
+Create virtual environment 
+```
+virtualenv polling-app
+```
+go into polling-app folder 
+```
+cd polling-app
+```
+Activate virtual environment
+```
+source bin/activate
+```
+
+Go back to parent directory and install requirements 
+```
+cd ..
+```
+
 ```
 pip install -r requirements.txt
 ```
 
 Set the FLASK_APP and FLASK_DEBUG variables
 ```
-FLASK_APP=server
-FLASK_DEBUG=1
+export FLASK_APP=app.py
+export FLASK_DEBUG=1
 ```
 
 Run with
@@ -22,7 +37,7 @@ flask run
 ```
 
 #### Frontend setup
-Navigate to frontend folder 
+Open new terminal window and navigate to frontend folder 
 ```
 cd frontend
 ```
