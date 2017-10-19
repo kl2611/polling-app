@@ -1,4 +1,4 @@
-#!/Users/Kelly/Desktop/polling-app/bin/python
+#!/Users/Kelly/Desktop/test/polling-app/bin/python
 
 import sys
 import getopt
