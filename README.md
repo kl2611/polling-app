@@ -4,6 +4,7 @@ This polling app features a landing page where a random poll question is display
 ## Local Deployment
 #### Backend setup
 `pip install -r requirements.txt`
+<br />
 `flask run`
 
 #### Frontend setup
@@ -21,4 +22,27 @@ Navigate to `localhost:5001`
 - Bootstrap toolkit
 - SASS stylesheets
 
+## Schema
+#### Questions
+| column name     | data type     | details                   |
+| -------------   | ------------- | --------------------------|
+| id              | integer       |  not null, primary key    |
+| title           | string        |                           |
+| options         | array         |                           |
+| total_vote_count| integer       |                           |
+
+#### Options
+| column name    | data type     | details                   |
+| -------------  | ------------- | --------------------------|
+| id             | integer       |  not null, primary key    |
+| name           | string        |                           |
+
+#### Polls
+| column name    | data type     | details                   |
+| -------------  | ------------- | --------------------------|
+| question_id    | integer       |  not null, foreign key    |
+| option_id      | integer       |  not null, foreign key    |
+| vote_count     | integer       |  not null                 |
+
 ## Thoughts and Future Implementations
+I chose Flask for the Python backend due to its versatility. 
