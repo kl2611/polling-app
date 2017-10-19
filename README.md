@@ -8,14 +8,16 @@ Create virtual environment `virtualenv flask`
 
 `pip install -r requirements.txt`
 <br />
-`FLASK_APP=server 
-FLASK_DEBUG=1 flask run`
+`FLASK_APP=server`
+<br />
+`FLASK_DEBUG=1 flask run`
+<br />
 `flask run`
 
 #### Frontend setup
-`npm start`
+In terminal, run `ng serve --host 0.0.0.0 --port 5001`
 <br />
-Navigate to `localhost:5001`
+Navigate to `localhost:5001` in your browser
 
 ## Code
 ### Backend
@@ -32,23 +34,32 @@ Navigate to `localhost:5001`
 | column name     | data type     | details                   |
 | -------------   | ------------- | --------------------------|
 | id              | integer       |  not null, primary key    |
-| title           | string        |                           |
-| options         | array         |                           |
-| total_vote_count| integer       |                           |
+| title           | string        |  not null                 |
+| options         | array         |  not null                 |
+| total_vote_count| integer       |  not null                 |
 
 #### Options
 | column name    | data type     | details                   |
 | -------------  | ------------- | --------------------------|
 | id             | integer       |  not null, primary key    |
-| name           | string        |                           |
+| name           | string        |  not null                 |
 
 #### Polls
 | column name    | data type     | details                   |
 | -------------  | ------------- | --------------------------|
-| question_id    | integer       |  not null, foreign key    |
-| option_id      | integer       |  not null, foreign key    |
-| vote_count     | integer       |  not null                 |
+| question_id    | integer       |  not null, foreign key (references questions)  |
+| option_id      | integer       |  not null, foreign key (references options)    |
+| vote_count     | integer       |  not null                                      |
 
 ## Thoughts and Future Implementations
-I chose Flask for the Python backend due to its versatility. 
-SQL Alchemy was used due to its excellent documentation, as well as Flask SQLAlchemy extension that makes it easier to use SQLAlchemy directly in flask.
+I chose Flask over Django for the Python backend due to its flexibility and minimalistic features.
+SQL Alchemy was used due to its excellent documentation, and the Flask SQLAlchemy extension made it easier to use SQLAlchemy directly in Flask.
+Angular 2 was used because of TypeScript compiler's ease-of-use and simplicity of the interface. A con of Angular 2, however, is its large set of data files.
+
+With more time permitted, I implement the following: 
+- Unit tests
+- Improving app security
+- Improve UI/UX design
+- Render all error views and components
+- Provide a larger poll question repository/seed file. As of now there are only 5 questions in the database.
+- Ability for a user to create, view, update, and delete questions and their options
