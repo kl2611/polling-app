@@ -2,7 +2,7 @@ from flask import Flask, request, flash, render_template, redirect, url_for, jso
 from flask_migrate import Migrate
 from flask_restful import Resource, Api
 from flask_cors import CORS
-from models import db, Polls, Questions
+from models import db, Polls, Questions, Options
 import simplejson as json
 
 app = Flask(__name__)
@@ -45,27 +45,29 @@ def api_polls():
 
     return jsonify(all_polls)
 
-@app.route('/api/polls/<int:poll_id>', methods=['GET', 'PATCH', 'DELETE'])
+@app.route('/api/polls/<int:poll_id>', methods=['GET', 'POST', 'DELETE'])
 # retrieves one poll based on id
-def get(poll_id):
+def api_poll(poll_id):
   if request.method == 'GET':
     poll = Questions.query.get(poll_id).to_json()
     return jsonify(poll)
-   
-# @app.route('/api/polls/options')
-# def api_polls_options():
-#   all_options = [option.to_json() for option in Options.query.all()]
 
-#   return jsonify(all_options)
 
-@app.route('/api/poll/vote', methods=['PATCH'])
+@app.route('/api/polls/options')
+def api_polls_options():
+  all_options = [option.to_json() for option in Options.query.all()]
+
+  return jsonify(all_options)
+
+@app.route('/api/polls/vote', methods=['PATCH'])
 def api_poll_vote():
 
-  poll = request.get_json()
+  poll = request.get_json()['data']
 
   poll_title, option = (poll['poll_title'], poll['option'])
 
-  join_tables = Polls.query.join(Topics).join(Options)
+  join_tables = Polls.query.join(Questions).join(Options)
+
   # filter options
   option = join_tables.filter(Questions.title.like(poll_title)).filter(Options.name.like(option)).first()
 

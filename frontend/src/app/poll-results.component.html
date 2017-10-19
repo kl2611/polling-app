@@ -1,0 +1,26 @@
+<div class="jumbotron" *ngIf="resultsPoll">
+<h2>{{resultsPoll.title}}</h2>
+<p></p>
+<div *ngFor="let option of resultsPoll.options; let i=index;">
+<label class="progress-label">{{option.name}}</label>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-info" role="progressbar"
+       [attr.aria-valuenow]="option.progress" aria-valuemin="0" aria-valuemax="100" [ngStyle]="option.current">
+    {{option.progress}}%
+  </div>
+
+  <label class="vote-label" *ngIf="option.vote_count == 1">{{option.vote_count}} vote</label>
+  <label class="vote-label" *ngIf="option.vote_count > 1">{{option.vote_count}} votes</label>
+</div>
+
+</div>
+
+<div>
+  <label>{{resultsPoll.total_vote_count}} votes total</label>
+  <p><a 
+    class="btn btn-lg btn-success" 
+    routerLink="/home" role="button">Back</a>
+  </p>
+</div>
+</div>
