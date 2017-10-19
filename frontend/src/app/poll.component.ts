@@ -5,12 +5,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'poll-component',
   templateUrl: './poll.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.sass']
 })
 
 export class PollComponent {
-
-  public submitted = false;
   public selected: any;
 
   private getPollsURL: string = "http://localhost:5000/api/polls";
@@ -31,11 +29,11 @@ export class PollComponent {
   generateRandomNumber(number: any) {
     let range = parseInt(number);
     this.randomPollNumber = Math.floor(Math.random() * (range) + 1)
-    console.log(this.randomPollNumber);
   }
 
   renderRandomPoll(number: any) {
-    console.log(this.randomPollNumber);
+    // GET request to fetch poll with the random number ID
+    console.log('random poll number', this.randomPollNumber);
     let currentPollURL = this.getPollsURL + '/' + number.toString();
     this.http.get(currentPollURL).subscribe(data => {
       this.currentPoll = data;
@@ -65,7 +63,5 @@ export class PollComponent {
         console.log('patch completed')
       }
     )
-
-    this.submitted = true;
   }
 }

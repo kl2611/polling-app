@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'poll-results',
   templateUrl: './poll-results.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.sass']
 })
 
 export class PollResultsComponent {
@@ -19,7 +19,7 @@ export class PollResultsComponent {
   private total_vote_count: number;
 
   ngOnInit() {
-    console.log('poll results page')
+    // Init results page for id passed after submit
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       console.log(params)
@@ -40,19 +40,11 @@ export class PollResultsComponent {
   }
 
   renderGraph() {
-    // const tmp = document.createElement('div');
     var total_vote_count = this.total_vote_count;
     for (var i = 0; i < this.resultsPoll.options.length; i++) {
       this.resultsPoll.options[i].progress = Math.round((this.resultsPoll.options[i].vote_count / total_vote_count) * 100) || 0
       this.resultsPoll.options[i].current = {width: this.resultsPoll.options[i].progress+"%"}
     }
-
-    
-
-    // var options = this.resultsPoll.options.map(function(option) {
-    //   var progress = Math.round((option.vote_count / total_vote_count) * 100) || 0
-    //   var current = {width: progress+"%"}
-    // });
   }
 
   ngOnDestroy() {

@@ -9,12 +9,15 @@
       <input type="radio"
              name = "options"
              [(ngModel)]="selected"
-             [value]="option.name"> {{option.name}}
+             [value]="option.name"> 
+      <span style="padding-left: 5px;">{{option.name}}</span>
     </div>
   </label>
 </div>
 
-<p><a 
+<br />
+<p class="text-right">
+  <a 
   (click)="onSubmit()"
   class="btn btn-lg btn-success" 
   role="button">Submit</a>
