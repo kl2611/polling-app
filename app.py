@@ -3,7 +3,6 @@ from flask_migrate import Migrate
 from flask_restful import Resource, Api
 from flask_cors import CORS
 from models import db, Polls, Questions, Options
-import simplejson as json
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,7 +11,7 @@ CORS(app)
 # load config from the config file we created earlier
 app.config.from_object('config')
 
-# initialize and create the database
+# initialize and create database
 db.init_app(app)
 db.create_all(app=app)
 

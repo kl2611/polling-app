@@ -9,6 +9,7 @@ db = SQLAlchemy()
 # Base model that for other models to inherit from
 class Base(db.Model):
     __abstract__ = True
+    extend_existing=True
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -17,10 +18,11 @@ class Base(db.Model):
 
 # Model for poll questions
 class Questions(Base):
+    # Columns declaration
     title = db.Column(db.String(500))
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    # user friendly way to display the object
+    # Method to view objects in terminal
     def __repr__(self):
       return self.title
 
@@ -48,8 +50,10 @@ class Questions(Base):
 
 # Model for poll options
 class Options(Base):
+  # Columns declaration
   name = db.Column(db.String(200), unique=True)
 
+  # Method to view objects in terminal
   def __repr__(self):
     return self.name
 
@@ -59,21 +63,20 @@ class Options(Base):
       'name': self.name
     }
 
-# Polls model to connect questions and options together
+# Model Polls to connect questions and options together
 class Polls(Base):
   # Columns declaration
   question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
   option_id = db.Column(db.Integer, db.ForeignKey('options.id'))
   vote_count = db.Column(db.Integer, default=0)
 
-  # Relationship declaration (makes it easier for us to access the polls model
-  # from the other models it's related to)
+  # Relationship declaration
   question = db.relationship('Questions', foreign_keys=[question_id],
           backref=db.backref('options', lazy='dynamic'))
   option = db.relationship('Options',foreign_keys=[option_id])
 
+  # Method to view objects in terminal
   def __repr__(self):
-    # a user friendly way to view our objects in the terminal
     return self.option.name
 
   def get_all():

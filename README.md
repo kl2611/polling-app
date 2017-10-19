@@ -46,3 +46,4 @@ Navigate to `localhost:5001`
 
 ## Thoughts and Future Implementations
 I chose Flask for the Python backend due to its versatility. 
+SQL Alchemy was used due to its excellent documentation, as well as Flask SQLAlchemy extension that makes it easier to use SQLAlchemy directly in flask.
