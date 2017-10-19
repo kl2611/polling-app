@@ -13,7 +13,7 @@ export class PollComponent {
 
   private getPollsURL: string = "http://localhost:5000/api/polls";
   private voteURL: string = "http://localhost:5000/api/polls/vote"
-  private pollLength: Number = 6; // Demo use only: Fixed number representing number of questions in polls to reduce calls to database
+  private pollLength: Number = 10; // Demo use only: Fixed number representing number of questions in polls to reduce calls to database
   private randomPollNumber: Number; 
   private currentPoll: any; 
 
