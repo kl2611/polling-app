@@ -3,8 +3,13 @@ This polling app features a landing page where a random poll question is display
 
 ## Local Deployment
 #### Backend setup
+Create virtual environment `virtualenv flask`
+<br />
+
 `pip install -r requirements.txt`
 <br />
+`FLASK_APP=server 
+FLASK_DEBUG=1 flask run`
 `flask run`
 
 #### Frontend setup
