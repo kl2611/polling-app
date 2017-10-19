@@ -1,6 +1,6 @@
-from flask import Flask, request, flash, render_template, redirect, url_for, jsonify, send_file
+from flask import Flask, request, flash, render_template, redirect, url_for, jsonify, json, send_file
 from flask_migrate import Migrate
-from flask_restful import Resource, Api
+from flask_restful import Resource, reqparse, abort, Api
 from flask_cors import CORS
 from models import db, Polls, Questions, Options
 
@@ -24,10 +24,6 @@ def home():
 if __name__ == '__main__':
     app.run()
 
-@app.route('/polls', methods=['GET'])
-def polls():
-  return render_template('polls.html')
-
 @app.route('/api/polls', methods=['GET', 'POST'])
 # retrieves/adds polls from/to the database
 def api_polls():
@@ -44,12 +40,21 @@ def api_polls():
 
     return jsonify(all_polls)
 
-@app.route('/api/polls/<int:poll_id>', methods=['GET'])
+@app.route('/api/polls/<int:poll_id>', methods=['GET', 'DELETE'])
 # retrieves one poll based on id
 def api_poll(poll_id):
   if request.method == 'GET':
     poll = Questions.query.get(poll_id).to_json()
     return jsonify(poll)
+  elif request.method == 'DELETE':
+      poll = db.session.query(Questions).filter_by(id=poll_id)
+      if poll:
+        poll.delete()
+        db.session.commit()
+        db.session.remove()
+        return jsonify({'message': 'Sucessfully deleted'})
+      else:
+        return jsonify({'message': 'Poll ID does not exist or has already been deleted'})
 
 @app.route('/api/polls/options')
 def api_polls_options():
@@ -73,6 +78,7 @@ def api_poll_vote():
   if option:
       option.vote_count += 1
       db.session.commit()
+      db.session.remove()
 
       return jsonify({'message': 'Thanks for voting'})
 
