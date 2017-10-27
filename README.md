@@ -115,7 +115,7 @@ I chose Flask over Django for the Python backend due to its flexibility and mini
 SQL Alchemy was used due to its excellent documentation, and the Flask SQLAlchemy extension made it easier to use SQLAlchemy directly in Flask.
 Angular 2 was used because of TypeScript compiler's ease-of-use and simplicity of the interface. A con of Angular 2, however, is its large set of data files that comes with angular-cli. But as a practical reason, my existing familiarity with the framework made it more convenient to use.
 
-With more time permitted, I implement the following: 
+With more time permitted, I would implement the following: 
 - Unit tests
 - Improving app security
 - Improve UI/UX design
