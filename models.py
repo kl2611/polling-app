@@ -77,3 +77,5 @@ class Polls(Base):
   # Method to view objects in terminal
   def __repr__(self):
     return self.option.name
+
+
